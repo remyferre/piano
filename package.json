@@ -9,6 +9,8 @@
     "test:unit": "vue-cli-service test:unit"
   },
   "dependencies": {
+    "lodash": "^4.17.10",
+    "vexflow": "^1.2.84",
     "vue": "^2.5.16",
     "vuex": "^3.0.1"
   },
