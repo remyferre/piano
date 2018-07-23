@@ -1,7 +1,7 @@
 <template>
-  <button class="reset" @click="filterKeys(category)">
+  <button v-if="count > 0" class="reset" @click="filterKeys(category)">
     <h4>
-      {{ category.name }} ({{category.keys.length}})
+      {{ category.name }} ({{ count }})
       <FontAwesomeIcon :icon="icon"></FontAwesomeIcon>
     </h4>
   </button>
@@ -23,6 +23,9 @@ export default {
 		},
 	},
 	computed: {
+		count() {
+			return this.category.keys.length;
+		},
 		icon() {
 			if (this.$store.state.filters[this.category.slug]) {
 				return faAngleDown;
