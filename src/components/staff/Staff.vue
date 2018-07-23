@@ -135,7 +135,7 @@ export default {
             let octave = 4;
             const vexflowNotes = [];
             notes.forEach(note => {
-                if (note.index < previousNote.index)
+                if (note.naturalNote.index < previousNote.naturalNote.index)
                     ++octave;
                 previousNote = note;
 
