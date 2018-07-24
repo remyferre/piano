@@ -1,6 +1,6 @@
 <template>
   <button class="key reset" @click="selectKey()" :class="{ selected: isSelected }">
-	{{ keyResult.shortName() }}
+	<span v-html="keyResult.shortName()"></span>
   </button>
 </template>
 

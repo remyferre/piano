@@ -1,6 +1,6 @@
 <template>
   <section class="selected-key" v-if="key">
-	<h3>{{ keyName }}</h3>
+	<h3 v-html="keyName"></h3>
 	<div id="staff"></div>
   </section>
 </template>
