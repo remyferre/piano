@@ -158,10 +158,6 @@ export default {
 #staff {
 	width: 100%;
 }
-#staff svg {
-	width: 100%;
-	height: 100%;
-}
 @media only screen and (min-width : 901px) and (max-width : 9999px) {
 	.selected-key {
 		width: 532px;
@@ -170,5 +166,12 @@ export default {
 		flex-direction: column;
 		justify-content: center;
 	}
+}
+</style>
+
+<style lang="scss">	// scoped doesn't work because <svg> is added dynamically
+#staff svg {
+	width: 100%;
+	height: 100%;
 }
 </style>
