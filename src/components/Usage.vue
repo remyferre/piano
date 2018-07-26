@@ -7,7 +7,7 @@ export default {
 	name: "Usage",
 	computed: {
 		text() {
-			if (this.$store.state.activeTab == 'SCALE')
+			if (this.$store.state.activeTab == 'scales')
 				return "Appuyez sur les touches du piano pour afficher les gammes correspondantes.";
 			else
 				return "Appuyez sur les touches du piano pour afficher les accords correspondants.";

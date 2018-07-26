@@ -24,10 +24,10 @@ export default {
 	},
 	computed: {
 		count() {
-			return this.category.keys.length;
+			return this.category.results.length;
 		},
 		icon() {
-			if (this.$store.state.filters[this.category.slug]) {
+			if (this.category.isShown) {
 				return faAngleDown;
 			} else {
 				return faAngleUp;

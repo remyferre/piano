@@ -1,24 +1,32 @@
-import _ from 'lodash';
 import Vue from 'vue';
 import Vuex from 'vuex';
-import {SCALE_CATEGORIES} from './key_finder/scales.js';
-import {CHORD_CATEGORIES} from './key_finder/chords.js';
+import {
+	MAJOR_SCALE, MINOR_SCALE,
+	HARMONIC_MINOR, MELODIC_MINOR,
+	DORIAN, PHRYGIAN, LYDIAN, MIXOLYDIAN, LOCRIAN,
+	PENTATONIC_MAJOR, PENTATONIC_MINOR,
+	BLUES_SCALE
+} from './key_finder/scales.js';
+import {
+	MAJOR_CHORD, MINOR_CHORD,
+	DIMINISHED_CHORD, AUGMENTED_CHORD,
+	SUS4, SUS2,
+	DOMINANT_SEVENTH, MAJOR_SEVENTH, AUGMENTED_MAJOR_SEVENTH,
+	MINOR_MAJOR_SEVENTH, MINOR_SEVENTH, HALF_DIMINISHED_SEVENTH,
+	DIMINISHED_SEVENTH
+} from './key_finder/chords.js';
 import {findKeys} from './key_finder/main.js';
 
 Vue.use(Vuex);
 
 function activeCategories(state) {
-	if (state.activeTab == "SCALE") {
-		return SCALE_CATEGORIES;
-	} else {
-		return CHORD_CATEGORIES;
-	}
+	return Object.entries(state[state.activeTab]);
 }
 
 function firstFilteredKey(state) {
-	for (let category in activeCategories(state)) {
-		if (state.filters[category] && state.results[category].length > 0)
-			return state.results[category][0];
+	for (let [, category] of activeCategories(state)) {
+		if (category.isShown && category.results.length > 0)
+			return category.results[0];
 	}
 	return null;
 }
@@ -28,9 +36,9 @@ function keyInResults(state, key) {
 		return false;
 	}
 
-	for (let category in activeCategories(state)) {
-		if (state.filters[category])
-			for (let k of state.results[category]) {
+	for (let [, category] of activeCategories(state)) {
+		if (category.isShown)
+			for (let k of category.results) {
 				if (k.equals(key)) {
 					return true;
 				}
@@ -49,41 +57,92 @@ function updateSelectedKey(state) {
 export default new Vuex.Store({
 	state: {
 		piano: Array(12).fill(false),
-		activeTab: "SCALE",
+		activeTab: "scales",
 		selectedKey: null,
-		results: {
-			main: [],
-			otherMinor: [],
-			pentatonic: [],
-			mode: [],
-			chord: [],
-			blues: [],
-			otherTriad: [],
-			suspended: [],
-			seventh: [],
-			otherSeventh: []
+		scales: {
+			main: {
+				slug: "main",
+				name: "Majeures et mineures",
+				isShown: true,
+				results: [],
+				items: [MAJOR_SCALE, MINOR_SCALE]
+			},
+			otherMinor: {
+				slug: "otherMinor",
+				name: "Autres gammes mineures",
+				isShown: false,
+				results: [],
+				items: [HARMONIC_MINOR, MELODIC_MINOR]
+			},
+			pentatonic: {
+				slug: "pentatonic",
+				name: "Gamme pentatoniques",
+				isShown: false,
+				results: [],
+				items: [PENTATONIC_MAJOR, PENTATONIC_MINOR]
+			},
+			mode: {
+				slug: "mode",
+				name: "Modes",
+				isShown: false,
+				results: [],
+				items: [DORIAN, PHRYGIAN, LYDIAN, MIXOLYDIAN, LOCRIAN]
+			},
+			blues: {
+				slug: "blues",
+				name: "Blues",
+				isShown: false,
+				results: [],
+				items: [BLUES_SCALE]
+			}
 		},
-		filters: {
-			main: true,
-			otherMinor: false,
-			pentatonic: false,
-			mode: false,
-			blues: false,
-			chord: true,
-			otherTriad: false,
-			suspended: false,
-			seventh: false,
-			otherSeventh: false
+		chords: {
+			chord: {
+				slug: "chord",
+				name: "Majeurs et mineurs",
+				isShown: true,
+				results: [],
+				items: [MAJOR_CHORD, MINOR_CHORD]
+			},
+			otherTriad: {
+				slug: "otherTriad",
+				name: "Triades augmentées/diminuées",
+				isShown: false,
+				results: [],
+				items: [DIMINISHED_CHORD, AUGMENTED_CHORD]
+			},
+			suspended: {
+				slug: "suspended",
+				name: "Suspendus",
+				isShown: false,
+				results: [],
+				items: [SUS4, SUS2]
+			},
+			seventh: {
+				slug: "seventh",
+				name: "Septièmes de dominante",
+				isShown: false,
+				results: [],
+				items: [DOMINANT_SEVENTH]
+			},
+			otherSeventh: {
+				slug: "otherSeventh",
+				name: "Septièmes d'espèces",
+				isShown: false,
+				results: [],
+				items: [MAJOR_SEVENTH, AUGMENTED_MAJOR_SEVENTH, MINOR_MAJOR_SEVENTH,
+						MINOR_SEVENTH, HALF_DIMINISHED_SEVENTH, DIMINISHED_SEVENTH]
+			}
 		}
 	},
 	mutations: {
 		pressKey(state, keyIndex) {
 			Vue.set(state.piano, keyIndex, !state.piano[keyIndex]);
 			const bitstring = state.piano.map(key => key ? "1" : "0").join("");
-			for (let categories of [SCALE_CATEGORIES, CHORD_CATEGORIES]) {
-				_.forIn(categories, (scales, category) => {
-					Vue.set(state.results, category, findKeys(bitstring, scales));
-				});
+			for (let tab of ['scales', 'chords']) {
+				for (let [slug, category] of Object.entries(state[tab])) {
+					Vue.set(state[tab][slug], 'results', findKeys(bitstring, category.items));
+				}
 			}
 			updateSelectedKey(state);
 		},
@@ -92,7 +151,8 @@ export default new Vuex.Store({
 			updateSelectedKey(state);
 		},
 		filterKeys(state, category) {
-			Vue.set(state.filters, category, !state.filters[category]);
+			const tab = state.activeTab;
+			Vue.set(state[tab][category], 'isShown', !state[tab][category].isShown);
 			updateSelectedKey(state);
 		},
 		selectKey(state, key) {
