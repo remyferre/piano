@@ -1,8 +1,8 @@
 <template>
   <section v-if="pianoKeysPressed">
     <section class="tabs">
-      <button class="reset tab" @click="changeTab('scales')" :class="{ selected: this.$store.state.activeTab == 'scales' }">Gammes</button>
-      <button class="reset tab" @click="changeTab('chords')" :class="{ selected: this.$store.state.activeTab == 'chords' }">Accords</button>
+      <Tab tab="scales" name="Gammes"></Tab>
+      <Tab tab="chords" name="Accords"></Tab>
     </section>
     <section v-for="category in results" :key="category.slug">
       <Category :category="category"></Category>
@@ -15,8 +15,9 @@
 
 <script>
 import _ from 'lodash';
-import Result from './Result.vue';
+import Tab from './Tab.vue';
 import Category from './Category.vue';
+import Result from './Result.vue';
 
 export default {
 	name: "Results",
@@ -28,14 +29,10 @@ export default {
 			return _.some(this.$store.state.piano);
 		}
 	},
-	methods: {
-		changeTab(tab) {
-			this.$store.commit('changeTab', tab);
-		}
-	},
 	components: {
-		Result,
-		Category
+		Tab,
+		Category,
+		Result
 	},
 };
 </script>
@@ -46,15 +43,6 @@ export default {
 }
 .tab {
 	flex-grow: 1;
-	padding: 1rem !important;
-	border: 1px solid #222 !important;
-	&:hover {
-		background-color: rgba(34, 34, 34, 0.1);
-	}
-	&.selected {
-		color: #feead4;
-		background-color: #222;
-	}
 }
 @media only screen and (max-width : 900px) {
 	.keys {
