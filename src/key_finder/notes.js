@@ -37,6 +37,10 @@ export class Note {
 		return `${this.naturalNote.englishName}${this.accidental}`;
 	}
 
+	hasAccidental() {
+		return this.accidental != "" && this.accidental != "♮";
+	}
+
 	alter(alteration) {
 		const accidentalIndex = {
 			"♭♭": -2,
@@ -52,16 +56,16 @@ export class Note {
 }
 
 export const NOTES = {
-	0:  [new Note(0 , DO)],
-	1:  [new Note(1 , DO , "♯"), new Note(1, RE , "♭")],
+	0:  [new Note(0 , DO),       new Note(10, SI , "♯")],
+	1:  [new Note(1 , DO , "♯"), new Note(1 , RE , "♭")],
 	2:  [new Note(2 , RE)],
-	3:  [new Note(3 , RE , "♯"), new Note(3, MI , "♭")],
-	4:  [new Note(4 , MI)],
-	5:  [new Note(5 , FA)],
-	6:  [new Note(6 , FA , "♯"), new Note(6, SOL , "♭")],
+	3:  [new Note(3 , RE , "♯"), new Note(3 , MI , "♭")],
+	4:  [new Note(4 , MI),       new Note(4 , FA , "♭")],
+	5:  [new Note(5 , FA),       new Note(5 , MI , "♯")],
+	6:  [new Note(6 , FA , "♯"), new Note(6 , SOL, "♭")],
 	7:  [new Note(7 , SOL)],
-	8:  [new Note(8 , SOL, "♯"), new Note(8, LA , "♭")],
+	8:  [new Note(8 , SOL, "♯"), new Note(8 , LA , "♭")],
 	9:  [new Note(9 , LA)],
 	10: [new Note(10, LA , "♯"), new Note(10, SI , "♭")],
-	11: [new Note(11, SI)]
+	11: [new Note(11, SI),       new Note(11, DO , "♭")]
 };

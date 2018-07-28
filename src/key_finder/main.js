@@ -48,9 +48,25 @@ export function findKeys(notes, scales) {
 					if (!key.isTheoretical())
 						enharmonicKeys.push(key);
 				}
-				// if (enharmonicKeys.length > 0)
-				// keys.push(enharmonicKeys[0]);
-				keys.push(...enharmonicKeys);
+				if (enharmonicKeys.length == 1) {
+					keys.push(enharmonicKeys[0]);
+				}
+				else if (enharmonicKeys.length == 2) {
+					const firstKey = enharmonicKeys[0];
+					const secondKey = enharmonicKeys[1];
+					if (!firstKey.tonic.hasAccidental() && secondKey.tonic.hasAccidental())
+						keys.push(firstKey);
+					else {
+						const firstKeyAccidentals = firstKey.notes.filter(note => note.hasAccidental()).length;
+						const secondKeyAccidentals = secondKey.notes.filter(note => note.hasAccidental()).length;
+						if (firstKeyAccidentals == secondKeyAccidentals)
+							keys.push(...enharmonicKeys);
+						else if (firstKeyAccidentals < secondKeyAccidentals)
+							keys.push(firstKey);
+						else
+							keys.push(secondKey);
+					}
+				}
 			}
 		}
 	});
