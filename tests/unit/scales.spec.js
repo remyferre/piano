@@ -5,7 +5,7 @@ import {
 } from '@/key_finder/scales.js';
 import { findKeys } from '@/key_finder/main.js';
 
-function assertKeysFound(scale, pianoNotes, expectedKeys) {
+export function assertKeysFound(scale, pianoNotes, expectedKeys) {
 	const keys = findKeys(pianoNotes, [scale]);
 	for (let [key, [expectedKey, expectedNotes]] of _.zip(keys, expectedKeys)) {
 		expect(key && key.name()).toEqual(expectedKey);
