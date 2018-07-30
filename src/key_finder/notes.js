@@ -69,3 +69,21 @@ export const NOTES = {
 	10: [new Note(10, LA , "♯"), new Note(10, SI , "♭")],
 	11: [new Note(11, SI),       new Note(11, DO , "♭")]
 };
+
+export class NotePattern {
+	constructor(bitstring, name, category, options={}) {
+		this.bitstring = bitstring;
+		this.name = name;
+		this.shortName = options.shortName || name;
+		this.category = category;
+		this.noteAlgorithm = options.noteAlgorithm;
+	}
+
+	match(bitstring) {
+		return (bitstring & parseInt(this.bitstring, 2)) == bitstring;
+	}
+
+	notes(tonic) {
+		return this.noteAlgorithm(this, tonic);
+	}
+}

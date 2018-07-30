@@ -1,5 +1,6 @@
 import _ from 'lodash';
 import {NOTES} from './notes.js';
+import {Scale} from './scales.js';
 
 class Key {
 
@@ -45,30 +46,35 @@ export function findKeys(notes, scales) {
 				const enharmonicKeys = [];
 				for (let note of NOTES[i]) {
 					const key = new Key(note, scale);
-					if (!key.isTheoretical())
+					if (!key.tonic.hasAccidental() || !key.isTheoretical())
 						enharmonicKeys.push(key);
 				}
 				if (enharmonicKeys.length == 1) {
 					keys.push(enharmonicKeys[0]);
 				}
 				else if (enharmonicKeys.length == 2) {
-					const firstKey = enharmonicKeys[0];
-					const secondKey = enharmonicKeys[1];
-					if (!firstKey.tonic.hasAccidental() && secondKey.tonic.hasAccidental())
-						keys.push(firstKey);
-					else {
-						const firstKeyAccidentals = firstKey.notes.filter(note => note.hasAccidental()).length;
-						const secondKeyAccidentals = secondKey.notes.filter(note => note.hasAccidental()).length;
-						if (firstKeyAccidentals == secondKeyAccidentals)
-							keys.push(...enharmonicKeys);
-						else if (firstKeyAccidentals < secondKeyAccidentals)
+					if (scale instanceof Scale) {
+						const firstKey = enharmonicKeys[0];
+						const secondKey = enharmonicKeys[1];
+						if (!firstKey.tonic.hasAccidental() && secondKey.tonic.hasAccidental())
 							keys.push(firstKey);
-						else
-							keys.push(secondKey);
+						else {
+							const firstKeyAccidentals = firstKey.notes.filter(note => note.hasAccidental()).length;
+							const secondKeyAccidentals = secondKey.notes.filter(note => note.hasAccidental()).length;
+							if (firstKeyAccidentals == secondKeyAccidentals)
+								keys.push(...enharmonicKeys);
+							else if (firstKeyAccidentals < secondKeyAccidentals)
+								keys.push(firstKey);
+							else
+								keys.push(secondKey);
+						}
+					}
+					else {
+						keys.push(...enharmonicKeys);
 					}
 				}
 			}
 		}
 	});
-	return keys;
+	return keys.sort((k1, k2) => k1.tonic.naturalNote.index - k2.tonic.naturalNote.index);
 }

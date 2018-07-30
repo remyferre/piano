@@ -1,7 +1,8 @@
 import {subScaleNotes, alteredNotes} from './strategies.js';
-import {Scale, MAJOR_SCALE, MINOR_SCALE, MIXOLYDIAN, HARMONIC_MINOR, LOCRIAN} from './scales.js';
+import {NotePattern} from './notes.js';
+import {MAJOR_SCALE, MINOR_SCALE, MIXOLYDIAN, HARMONIC_MINOR, LOCRIAN} from './scales.js';
 
-const Chord = Scale;
+class Chord extends NotePattern {}
 
 export const MAJOR_CHORD = new Chord("100010010000", note => `${note} majeur`, "chord", {noteAlgorithm: subScaleNotes(MAJOR_SCALE, [1, 3, 5])});
 export const MINOR_CHORD = new Chord("100100010000", note => `${note} mineur`, "chord", {noteAlgorithm: subScaleNotes(MINOR_SCALE, [1, 3, 5])});

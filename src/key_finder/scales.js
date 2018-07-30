@@ -1,22 +1,11 @@
 import _ from 'lodash';
 import {heptatonicScaleNotes, subScaleNotes} from './strategies.js';
-import {NOTES} from './notes.js';
+import {NOTES, NotePattern} from './notes.js';
 
-export class Scale {
+export class Scale extends NotePattern {
 	constructor(bitstring, name, category, options={}) {
-		this.bitstring = bitstring;
-		this.name = name;
-		this.shortName = options.shortName || name;
-		this.category = category;
-		this.noteAlgorithm = options.noteAlgorithm || heptatonicScaleNotes;
-	}
-
-	match(bitstring) {
-		return (bitstring & parseInt(this.bitstring, 2)) == bitstring;
-	}
-
-	notes(tonic) {
-		return this.noteAlgorithm(this, tonic);
+		options.noteAlgorithm = options.noteAlgorithm || heptatonicScaleNotes;
+		super(bitstring, name, category, options);
 	}
 }
 
