@@ -4,7 +4,10 @@
       <Tab tab="scales" name="Gammes"></Tab>
       <Tab tab="chords" name="Accords"></Tab>
     </section>
-    <section v-for="category in results" :key="category.slug">
+    <section v-if="noResultsFound">
+      <p>Aucun résultat n'a été trouvé</p>
+    </section>
+    <section v-else v-for="category in results" :key="category.slug">
       <Category :category="category"></Category>
       <div v-if="category.isShown" class="keys">
         <Result v-for="keyResult in category.results" :keyResult="keyResult" :key="keyResult.name()"></Result> <!-- name is an invalid key -->
@@ -24,6 +27,9 @@ export default {
 	computed: {
 		results() {
 			return this.$store.state[this.$store.state.activeTab];
+		},
+		noResultsFound() {
+			return _.every(this.results, category => category.results.length == 0)
 		},
 		pianoKeysPressed() {
 			return _.some(this.$store.state.piano);
