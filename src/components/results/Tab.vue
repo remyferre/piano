@@ -1,11 +1,11 @@
 <template>
-  <button class="reset tab" @click="changeTab()" :class="{ selected: isSelected }">{{ name }}</button>
+	<button class="reset tab" @click="changeTab()" :class="{ selected: isSelected }">{{ tab.name() }}</button>
 </template>
 
 <script>
 export default {
 	name: "Tab",
-	props: ['tab', 'name'],
+	props: ['tab'],
 	computed: {
 		isSelected() {
 			return this.$store.state.activeTab == this.tab;

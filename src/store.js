@@ -19,47 +19,24 @@ import {findKeys} from './key_finder/main.js';
 
 Vue.use(Vuex);
 
-function activeCategories(state) {
-	return Object.entries(state[state.activeTab]);
-}
-
-function firstFilteredKey(state) {
-	for (let [, category] of activeCategories(state)) {
-		if (category.isShown && category.results.length > 0)
-			return category.results[0];
+class Tab {
+	constructor(categories) {
+		this.categories = categories;
 	}
-	return null;
-}
-
-function keyInResults(state, key) {
-	if (!key) {
-		return false;
+	results() {
+		return this.categories;
 	}
-
-	for (let [, category] of activeCategories(state)) {
-		if (category.isShown)
-			for (let k of category.results) {
-				if (k.equals(key)) {
-					return true;
-				}
-			}
-	}
-	return false;
-}
-
-function updateSelectedKey(state) {
-	const firstKey = firstFilteredKey(state);
-	if (firstKey && !keyInResults(state, state.selectedKey)) {
-		state.selectedKey = firstKey;
+	*activeCategories() {
+		for (let [, category] of Object.entries(this.categories)) {
+			if (category.isShown)
+				yield category;
+		}
 	}
 }
 
-export default new Vuex.Store({
-	state: {
-		piano: Array(12).fill(false),
-		activeTab: "scales",
-		selectedKey: null,
-		scales: {
+class ScaleTab extends Tab {
+	constructor() {
+		super({
 			main: {
 				slug: "main",
 				name: "Majeures et mineures",
@@ -95,8 +72,22 @@ export default new Vuex.Store({
 				results: [],
 				items: [BLUES_SCALE]
 			}
-		},
-		chords: {
+		});
+	}
+	name() {
+		return "Gammes";
+	}
+	usage() {
+		return "Appuyez sur les touches du piano pour afficher les gammes correspondantes.";
+	}
+	noResultsText() {
+		return "Aucune gamme n'a été trouvée";
+	}
+}
+
+class ChordTab extends Tab {
+	constructor() {
+		super({
 			chord: {
 				slug: "chord",
 				name: "Majeurs et mineurs",
@@ -133,15 +124,67 @@ export default new Vuex.Store({
 				items: [MAJOR_SEVENTH, AUGMENTED_MAJOR_SEVENTH, MINOR_MAJOR_SEVENTH,
 						MINOR_SEVENTH, HALF_DIMINISHED_SEVENTH, DIMINISHED_SEVENTH]
 			}
+		});
+	}
+	name() {
+		return "Accords";
+	}
+	usage() {
+		return "Appuyez sur les touches du piano pour afficher les accords correspondants.";
+	}
+	noResultsText() {
+		return "Aucun accord n'a été trouvé";
+	}
+}
+
+function firstFilteredKey(state) {
+	for (let category of state.activeTab.activeCategories()) {
+		if (category.results.length > 0)
+			return category.results[0];
+	}
+	return null;
+}
+
+function keyInResults(state, key) {
+	if (!key) {
+		return false;
+	}
+
+	for (let category of state.activeTab.activeCategories()) {
+		for (let k of category.results) {
+			if (k.equals(key)) {
+				return true;
+			}
 		}
+	}
+	return false;
+}
+
+function updateSelectedKey(state) {
+	const firstKey = firstFilteredKey(state);
+	if (firstKey && !keyInResults(state, state.selectedKey)) {
+		state.selectedKey = firstKey;
+	}
+}
+
+const SCALE_TAB = new ScaleTab();
+const CHORD_TAB = new ChordTab();
+
+export default new Vuex.Store({
+	state: {
+		piano: Array(12).fill(false),
+		selectedKey: null,
+		activeTab: SCALE_TAB,
+		scales: SCALE_TAB,
+		chords: CHORD_TAB
 	},
 	mutations: {
 		pressKey(state, keyIndex) {
 			Vue.set(state.piano, keyIndex, !state.piano[keyIndex]);
 			const bitstring = state.piano.map(key => key ? "1" : "0").join("");
-			for (let tab of ['scales', 'chords']) {
-				for (let [slug, category] of Object.entries(state[tab])) {
-					Vue.set(state[tab][slug], 'results', findKeys(bitstring, category.items));
+			for (let tab of [SCALE_TAB, CHORD_TAB]) {
+				for (let [, category] of Object.entries(tab.categories)) {
+					Vue.set(category, 'results', findKeys(bitstring, category.items));
 				}
 			}
 			updateSelectedKey(state);
@@ -150,16 +193,13 @@ export default new Vuex.Store({
 			state.activeTab = tab;
 			updateSelectedKey(state);
 		},
-		filterKeys(state, category) {
-			const tab = state.activeTab;
-			Vue.set(state[tab][category], 'isShown', !state[tab][category].isShown);
+		filterKeys(state, slug) {
+			const category = state.activeTab.categories[slug];
+			Vue.set(category, 'isShown', !category.isShown);
 			updateSelectedKey(state);
 		},
 		selectKey(state, key) {
 			state.selectedKey = key;
 		}
-	},
-	actions: {
-
 	}
 });

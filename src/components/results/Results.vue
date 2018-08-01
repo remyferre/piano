@@ -1,11 +1,11 @@
 <template>
   <section v-if="pianoKeysPressed">
     <section class="tabs">
-      <Tab tab="scales" name="Gammes"></Tab>
-      <Tab tab="chords" name="Accords"></Tab>
+      <Tab :tab="this.$store.state.scales"></Tab>
+      <Tab :tab="this.$store.state.chords"></Tab>
     </section>
     <section v-if="noResultsFound">
-      <p>Aucun résultat n'a été trouvé</p>
+      <p>{{ this.$store.state.activeTab.noResultsText() }}</p>
     </section>
     <section v-else v-for="category in results" :key="category.slug">
       <Category :category="category"></Category>
@@ -26,10 +26,10 @@ export default {
 	name: "Results",
 	computed: {
 		results() {
-			return this.$store.state[this.$store.state.activeTab];
+			return this.$store.state.activeTab.results();
 		},
 		noResultsFound() {
-			return _.every(this.results, category => category.results.length == 0)
+			return _.every(this.results, category => category.results.length == 0);
 		},
 		pianoKeysPressed() {
 			return _.some(this.$store.state.piano);
@@ -39,7 +39,7 @@ export default {
 		Tab,
 		Category,
 		Result
-	},
+	}
 };
 </script>
 
