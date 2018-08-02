@@ -10,7 +10,7 @@
     <section v-else v-for="category in results" :key="category.slug">
       <Category :category="category"></Category>
       <div v-if="category.isShown" class="keys">
-        <Result v-for="keyResult in category.results" :keyResult="keyResult" :key="keyResult.name()"></Result> <!-- name is an invalid key -->
+        <Result v-for="keyResult in category.results" :keyResult="keyResult" :key="keyResult.slug()"></Result>
       </div>
     </section>
   </section>

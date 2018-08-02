@@ -71,11 +71,11 @@ export const NOTES = {
 };
 
 export class NotePattern {
-	constructor(bitstring, name, category, options={}) {
+	constructor(bitstring, name, slug, options={}) {
 		this.bitstring = bitstring;
 		this.name = name;
+		this._slug = slug;
 		this.shortName = options.shortName || name;
-		this.category = category;
 		this.noteAlgorithm = options.noteAlgorithm;
 	}
 

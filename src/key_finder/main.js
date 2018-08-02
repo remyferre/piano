@@ -10,6 +10,10 @@ class Key {
 		this.notes = this.scale.notes(this.tonic);
 	}
 
+	slug() {
+		return `${this.tonic.englishName().toLowerCase()}-${this.scale.slug()}`;
+	}
+
 	shortName() {
 		return this.scale.shortName(this.tonic.name());
 	}
@@ -26,7 +30,7 @@ class Key {
 	}
 
 	equals(other) {
-		return this.scale.category == other.scale.category && this.name() == other.name();
+		return this.slug() == other.slug();
 	}
 }
 
