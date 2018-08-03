@@ -2,7 +2,7 @@ import {subScaleNotes, alteredNotes} from './strategies.js';
 import {NotePattern} from './notes.js';
 import {MAJOR_SCALE, MINOR_SCALE, MIXOLYDIAN, HARMONIC_MINOR, LOCRIAN} from './scales.js';
 
-class Chord extends NotePattern {
+export class Chord extends NotePattern {
 	slug() {
 		return `${this._slug}-chord`;
 	}

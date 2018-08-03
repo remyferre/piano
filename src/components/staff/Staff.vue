@@ -7,6 +7,7 @@
 
 <script>
 import Vex from 'vexflow';
+import {Chord} from '@/key_finder/chords.js';
 
 export default {
     name: "Staff",
@@ -23,17 +24,10 @@ export default {
             return this.$store.state.selectedKey;
         },
         keyName() {
-            const key = this.key;
-            const isChord = key.scale.category == "chord" ||
-                  key.scale.category == "otherTriad" ||
-                  key.scale.category == "suspended" ||
-                  key.scale.category == "seventh" ||
-                  key.scale.category == "otherSeventh" ||
-                  key.scale.category == "augmentedSixth";
-            if (isChord) {
-                return `Accord de ${key.name()}`;
+            if (this.key.scale instanceof Chord) {
+                return `Accord de ${this.key.name()}`;
             } else {
-                return `Gamme de ${key.name()}`;
+                return `Gamme de ${this.key.name()}`;
             }
         }
     },
@@ -68,14 +62,8 @@ export default {
                     staffNote.addAccidental(0, new VF.Accidental(accidental));
                 return staffNote;
             });
-            const isChord = this.key.scale.category == "chord" ||
-                  this.key.scale.category == "otherTriad" ||
-                  this.key.scale.category == "suspended" ||
-                  this.key.scale.category == "seventh" ||
-                  this.key.scale.category == "otherSeventh" ||
-                  this.key.scale.category == "augmentedSixth";
 
-            if (isChord) {
+            if (this.key.scale instanceof Chord) {
                 const chord = new VF.StaveNote(
                     {clef: "treble", keys: vexflowNotes.map(([note,]) => note), duration: "w" }
                 );
@@ -99,7 +87,7 @@ export default {
                   .setStave(staff)
                   .setJustification(VF.TextNote.Justification.LEFT);
             });
-            if (isChord) {
+            if (this.key.scale instanceof Chord) {
                 text.push(new VF.TextNote({
                     text: "",
                     font: {
