@@ -9,9 +9,12 @@
     </section>
     <section v-else v-for="category in results" :key="category.slug">
       <Category :category="category"></Category>
-      <div v-if="category.isShown" class="keys">
-        <Result v-for="keyResult in category.results" :keyResult="keyResult" :key="keyResult.slug()"></Result>
-      </div>
+      <template v-if="category.isShown">
+        <div v-if="category.results.length > 0" class="keys">
+          <Result v-for="keyResult in category.results" :keyResult="keyResult" :key="keyResult.slug()"></Result>
+        </div>
+        <div v-else>Aucun résultat</div>
+      </template>
     </section>
   </section>
 </template>
