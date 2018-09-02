@@ -74,7 +74,7 @@ export default {
 	flex-direction: column-reverse;
 	align-items: center;
     &.pressed {
-		background-color: $header-color;
+		background-color: $header-left-color;
     }
     .note-name {
         width: 25px;

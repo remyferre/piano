@@ -48,7 +48,7 @@ body {
 	display: flex;
 	height: 100vh;
 	max-height: 100vh;
-	background-color: #feead4;
+	background-color: $background-color;
 	flex-direction: column;
 	color: $font-color;
 	font-family: 'Roboto', sans-serif;
@@ -81,7 +81,7 @@ button.reset::-moz-focus-inner {
 /* Header */
 
 .site-header {
-    background-color: $header-color;
+	background: linear-gradient(135deg, $header-left-color 0%, $header-right-color 100%);
     min-height: 40px;
     height    : 40px;
     h1 {
@@ -90,7 +90,7 @@ button.reset::-moz-focus-inner {
         margin: 0 1rem;
         font-family: Raleway, sans-serif;
         letter-spacing: .15em;
-        $shadow-color: mix($title-color, $header-color, 25%);
+        $shadow-color: mix($title-color, $header-left-color, 25%);
         text-shadow: -1px 2px 1px $shadow-color, -2px 4px 1px $shadow-color,
                      -3px 6px 1px $shadow-color, -4px 8px 1px $shadow-color;
     }
@@ -102,7 +102,7 @@ button.reset::-moz-focus-inner {
 }
 @media only screen and (min-width : 532px) and (max-width : 900px) {
 	body {
-		background-color: #edd0c3;
+		/* background-color: #edd0c3; */
 	}
 	main {
 		width: 532px;
@@ -119,7 +119,7 @@ button.reset::-moz-focus-inner {
 		height: 100%;
 	}
 	body {
-		background-color: #dcbfb2;
+		/* background-color: #dcbfb2; */
 	}
 	main {
 		display: flex;
