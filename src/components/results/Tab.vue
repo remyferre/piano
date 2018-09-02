@@ -20,15 +20,14 @@ export default {
 </script>
 
 <style scoped lang="scss">
+@import "@/css/_colors.scss";
+@import "@/css/_fonts.scss";
+@import "@/css/_mixins.scss";
+
 .tab {
+	@extend %title-font;
+	@extend %selected;
 	padding: 1rem !important;
-	border: 1px solid #222 !important;
-	&:hover {
-		background-color: rgba(34, 34, 34, 0.1);
-	}
-	&.selected {
-		color: #feead4;
-		background-color: #222;
-	}
+	border: 1px solid $black !important;
 }
 </style>

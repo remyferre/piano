@@ -16,16 +16,18 @@ export default {
 </script>
 
 <style scoped lang="scss">
+@import "@/css/_colors.scss";
+
 .black-key {
 	width: 75%;
 	height: 60%;
-	background-color: #222;
+	background-color: $black;
 	position: absolute;
 	top: 0;
 	left: 62.5%;
 	z-index: 2;
-	border: 2px solid #222;
-	border-top: 1px solid #222;
+	border: 2px solid $black;
+	border-top: 1px solid $black;
     .note-name {
         padding-bottom: 0.5rem;
     }

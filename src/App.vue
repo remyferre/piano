@@ -31,8 +31,11 @@ export default {
 </script>
 
 <style lang="scss">
-/* Global */
 
+@import "@/css/_colors.scss";
+@import "@/css/_fonts.scss";
+
+/* Global */
 html {
 	box-sizing: border-box;
 }
@@ -47,6 +50,12 @@ body {
 	max-height: 100vh;
 	background-color: #feead4;
 	flex-direction: column;
+	color: $font-color;
+	font-family: 'Roboto', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	@extend %title-font;
 }
 
 /* Avoid content jumping when scrollbar appear */
@@ -72,14 +81,18 @@ button.reset::-moz-focus-inner {
 /* Header */
 
 .site-header {
-	background-color: #f9a13e;
-	color: #222;
-	font-family: Impact, sans-serif;
-	text-transform: uppercase;
-	min-height: 40px;
-	height: 40px;
+    background-color: $header-color;
+    min-height: 40px;
+    height    : 40px;
     h1 {
+        @extend %title-font;
+        text-transform: uppercase;
         margin: 0 1rem;
+        font-family: Raleway, sans-serif;
+        letter-spacing: .15em;
+        $shadow-color: mix($title-color, $header-color, 25%);
+        text-shadow: -1px 2px 1px $shadow-color, -2px 4px 1px $shadow-color,
+                     -3px 6px 1px $shadow-color, -4px 8px 1px $shadow-color;
     }
 }
 

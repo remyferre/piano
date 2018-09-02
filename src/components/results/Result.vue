@@ -23,16 +23,13 @@ export default {
 </script>
 
 <style scoped lang="scss">
+@import "@/css/_mixins.scss";
+
 .key {
 	padding: 0.5rem !important;
+	@extend %selected;
 }
-.key:not(.selected):hover {
-	background-color: rgba(34, 34, 34, 0.1);
-}
-.key.selected {
-	color: #feead4;
-	background-color: #222;
-}
+
 @media only screen and (max-width : 900px) {
 	.key {
 		flex-grow: 1;

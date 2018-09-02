@@ -1,0 +1,11 @@
+@import "@/css/_colors.scss";
+
+%selected {
+	&:not(.selected):hover {
+		background-color: $black-hover;
+	}
+	&.selected {
+		color: $background-color;
+		background-color: $black;
+	}
+}

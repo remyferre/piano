@@ -42,6 +42,8 @@ export default {
 </script>
 
 <style scoped lang="scss">
+@import "@/css/_colors.scss";
+
 .piano {
 	height: 350px;
 	max-height: 40vh;
@@ -49,9 +51,9 @@ export default {
 	width: 100%;
 	display: inline-flex;
 	flex-direction: row;
-	outline: 1px solid #222;
+	outline: 1px solid $black;
 	position: relative;
-	color: #222;
+	color: $black;
 	user-select: none;
 	-moz-user-select: none;
 }
@@ -72,7 +74,7 @@ export default {
 	flex-direction: column-reverse;
 	align-items: center;
     &.pressed {
-        background-color: #f9a13e;
+		background-color: $header-color;
     }
     .note-name {
         width: 25px;

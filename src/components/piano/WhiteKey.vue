@@ -14,10 +14,12 @@ export default {
 </script>
 
 <style scoped lang="scss">
+@import "@/css/_colors.scss";
+
 .white-key {
 	background-color: white;
 	height: 100%;
-	border: 1px solid #222;
+	border: 1px solid $black;
     .note-name {
         padding-bottom: 1rem;
     }
