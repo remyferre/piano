@@ -1,5 +1,5 @@
 <template>
-  <button v-if="count > 0 || category.isShown" class="reset" @click="filterKeys(category)">
+  <button class="reset" @click="filterKeys(category)">
     <h4>
       {{ category.name }} ({{ count }})
       <FontAwesomeIcon :icon="icon"></FontAwesomeIcon>

@@ -53,7 +53,7 @@ class ScaleTab extends Tab {
 			},
 			pentatonic: {
 				slug: "pentatonic",
-				name: "Gamme pentatoniques",
+				name: "Gammes pentatoniques",
 				isShown: false,
 				results: [],
 				items: [PENTATONIC_MAJOR, PENTATONIC_MINOR]
