@@ -117,7 +117,7 @@ button.reset::-moz-focus-inner {
 
 /* Layout */
 .result-container {
- 	max-width: 50vw;
+    max-width: 50vw;
 	margin: auto;
 	padding-bottom: 1rem;
     margin-bottom: 200px;
