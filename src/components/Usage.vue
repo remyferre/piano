@@ -1,21 +1,21 @@
 <template>
-	<p class="usage">{{ this.$store.state.activeTab.usage() }}</p>
+	<p v-if="!key" class="usage">{{ this.$store.state.activeTab.usage() }}</p>
 </template>
 
 <script>
 export default {
 	name: "Usage",
+    computed: {
+        key() {
+            return this.$store.state.selectedKey;
+        }
+	}
 };
 </script>
 
 <style scoped lang="scss">
 .usage {
-	margin: 1rem 0;
-}
-@media only screen and (min-width : 901px) and (max-width : 9999px) {
-    .usage {
-        width: 532px;
-        text-align: center;
-    }
+	font-size: 1.5rem;
+    text-align: center;
 }
 </style>

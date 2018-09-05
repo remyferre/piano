@@ -1,5 +1,7 @@
 <template>
-	<button class="reset tab" @click="changeTab()" :class="{ selected: isSelected }">{{ tab.name() }}</button>
+	<button class="reset tab" @click="changeTab()" :class="{ selected: isSelected }">
+      {{ tab.name() }}
+    </button>
 </template>
 
 <script>
@@ -22,12 +24,19 @@ export default {
 <style scoped lang="scss">
 @import "@/css/_colors.scss";
 @import "@/css/_fonts.scss";
-@import "@/css/_mixins.scss";
 
 .tab {
 	@extend %title-font;
-	@extend %selected;
-	padding: 1rem !important;
-	border: 1px solid $black !important;
+	font-size: 1.4rem;
+	padding: 0 0.5rem;
+
+	border-bottom: 5px solid transparent;
+	&.selected {
+		border-bottom: 5px solid $black;
+	}
+
+	&:hover {
+		background-color: $white-hover;
+	}
 }
 </style>

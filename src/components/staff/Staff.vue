@@ -1,6 +1,6 @@
 <template>
   <section class="selected-key" v-if="key">
-	<h3 v-html="keyName"></h3>
+	<h3 class="key-name" v-html="keyName"></h3>
 	<div id="staff"></div>
   </section>
 </template>
@@ -139,12 +139,20 @@ export default {
 </script>
 
 <style scoped lang="scss">
+
+$margin: 20px;
+
 .selected-key {
 	width: 100%;
 	max-width: 525px;
 }
+.key-name {
+	margin: $margin 0;
+	text-align: center;
+}
 #staff {
 	width: 100%;
+	margin-bottom: $margin;
 }
 @media only screen and (min-width : 901px) and (max-width : 9999px) {
 	.selected-key {

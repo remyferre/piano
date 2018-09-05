@@ -1,9 +1,5 @@
 <template>
   <section v-if="pianoKeysPressed">
-    <section class="tabs">
-      <Tab :tab="this.$store.state.scales"></Tab>
-      <Tab :tab="this.$store.state.chords"></Tab>
-    </section>
     <section v-if="noResultsFound">
       <p>{{ this.$store.state.activeTab.noResultsText() }}</p>
     </section>
@@ -21,7 +17,6 @@
 
 <script>
 import _ from 'lodash';
-import Tab from './Tab.vue';
 import Category from './Category.vue';
 import Result from './Result.vue';
 
@@ -39,7 +34,6 @@ export default {
 		}
 	},
 	components: {
-		Tab,
 		Category,
 		Result
 	}
@@ -47,16 +41,12 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.tabs {
-	display: flex;
+.keys {
+    display: flex;
+    flex-wrap: no-wrap;
+    overflow-x: auto;
 }
-.tab {
-	flex-grow: 1;
-}
-@media only screen and (max-width : 900px) {
-	.keys {
-		display: flex;
-		flex-wrap: wrap;
-	}
+.key {
+    flex: 0 0 auto;
 }
 </style>

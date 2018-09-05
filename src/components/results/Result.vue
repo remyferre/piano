@@ -23,17 +23,19 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import "@/css/_mixins.scss";
+@import "@/css/_colors.scss";
 
 .key {
-	padding: 0.5rem !important;
-	@extend %selected;
-}
-
-@media only screen and (max-width : 900px) {
-	.key {
-		flex-grow: 1;
-		text-align: left;
+	padding: 0.8rem !important;
+	background-color: white;
+	border-radius: 50px;
+	margin-right: 1rem;
+	&:not(.selected):hover {
+		background-color: $black-hover;
+	}
+	&.selected {
+		color: $background-color;
+		background-color: $black;
 	}
 }
 </style>

@@ -45,7 +45,7 @@ export default {
 @import "@/css/_colors.scss";
 
 .piano {
-	height: 350px;
+	height: 200px;
 	max-height: 40vh;
 	max-width: 500px;
 	width: 100%;
@@ -80,10 +80,5 @@ export default {
         width: 25px;
         text-align: center;
     }
-}
-@media only screen and (min-width : 901px) and (max-width : 9999px) {
-	.piano {
-		width: 532px;
-	}
 }
 </style>
