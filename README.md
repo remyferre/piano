@@ -1,4 +1,4 @@
-# pianomatic
+# Pianomatic
 
 ## Project setup
 ```
