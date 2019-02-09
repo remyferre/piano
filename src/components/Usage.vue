@@ -1,15 +1,13 @@
 <template>
-	<p v-if="!key" class="usage">{{ this.$store.state.activeTab.usage() }}</p>
+	<p v-if="!selectedKey" class="usage">{{ this.$store.state.activeTab.usage() }}</p>
 </template>
 
 <script>
+import { mapState } from 'vuex';
+
 export default {
 	name: "Usage",
-    computed: {
-        key() {
-            return this.$store.state.selectedKey;
-        }
-	}
+    computed: mapState(["selectedKey"])
 };
 </script>
 

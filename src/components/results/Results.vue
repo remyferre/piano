@@ -17,21 +17,20 @@
 
 <script>
 import _ from 'lodash';
+import { mapState, mapGetters } from 'vuex';
 import Category from './Category.vue';
 import Result from './Result.vue';
 
 export default {
 	name: "Results",
 	computed: {
-		results() {
-			return this.$store.state.activeTab.results();
-		},
 		noResultsFound() {
 			return _.every(this.results, category => category.results.length == 0);
 		},
-		pianoKeysPressed() {
-			return _.some(this.$store.state.piano);
-		}
+		...mapState({
+			results: state => state.activeTab.results(),
+		}),
+		...mapGetters(['pianoKeysPressed'])
 	},
 	components: {
 		Category,

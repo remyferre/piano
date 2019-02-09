@@ -5,14 +5,16 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
+
 export default {
 	name: "Tab",
 	props: ['tab'],
-	computed: {
-		isSelected() {
-			return this.$store.state.activeTab == this.tab;
+	computed: mapState({
+		isSelected(state) {
+			return state.activeTab == this.tab;
 		}
-	},
+	}),
 	methods: {
 		changeTab() {
 			this.$store.commit('changeTab', this.tab);

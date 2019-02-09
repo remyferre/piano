@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import Vue from 'vue';
 import Vuex from 'vuex';
 import {
@@ -201,5 +202,8 @@ export default new Vuex.Store({
 		selectKey(state, key) {
 			state.selectedKey = key;
 		}
+	},
+	getters: {
+		pianoKeysPressed: state => _.some(state.piano),
 	}
 });

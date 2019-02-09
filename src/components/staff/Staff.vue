@@ -6,8 +6,9 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
 import Vex from 'vexflow';
-import {Chord} from '@/key_finder/chords.js';
+import { Chord } from '@/key_finder/chords.js';
 
 export default {
     name: "Staff",
@@ -20,9 +21,9 @@ export default {
         this.drawStaff();
     },
     computed: {
-        key() {
-            return this.$store.state.selectedKey;
-        },
+		...mapState({
+			key: 'selectedKey'
+		}),
         keyName() {
             if (this.key.scale instanceof Chord) {
                 return `Accord de ${this.key.name()}`;
