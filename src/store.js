@@ -168,6 +168,10 @@ function updateSelectedKey(state) {
 	}
 }
 
+function pianoKeysPressed(state) {
+	return _.some(state.piano);
+}
+
 const SCALE_TAB = new ScaleTab();
 const CHORD_TAB = new ChordTab();
 
@@ -192,7 +196,10 @@ export default new Vuex.Store({
 		},
 		changeTab(state, tab) {
 			state.activeTab = tab;
-			updateSelectedKey(state);
+			if (pianoKeysPressed(state))
+				updateSelectedKey(state);
+			else
+				state.selectedKey = null;
 		},
 		filterKeys(state, slug) {
 			const category = state.activeTab.categories[slug];
@@ -204,6 +211,6 @@ export default new Vuex.Store({
 		}
 	},
 	getters: {
-		pianoKeysPressed: state => _.some(state.piano),
+		pianoKeysPressed,
 	}
 });

@@ -16,9 +16,10 @@ export default {
         var staff = document.getElementById("staff");
         if (staff)
             staff.innerHTML = "";
-    },
+	},
     updated() {
-        this.drawStaff();
+		if (this.key)
+			this.drawStaff();
     },
     computed: {
 		...mapState({
