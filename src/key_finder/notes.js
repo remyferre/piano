@@ -49,7 +49,7 @@ export class Note {
 			"♯": +1,
 			"♯♯": +2
 		}[this.accidental];
-		return new Note(this.index + alteration,
+		return new Note((this.index + alteration) % 12,
 						this.naturalNote,
 						ACCIDENTALS.get(accidentalIndex + alteration));
 	}

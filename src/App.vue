@@ -63,8 +63,7 @@ body {
 	max-height: 100vh;
 	background-color: $background-color;
 	flex-direction: column;
-	color: $font-color;
-	font-family: 'Roboto', sans-serif;
+	@extend %main-font;
 }
 
 h1, h2, h3, h4, h5, h6 {
