@@ -7,7 +7,7 @@
 			<FontAwesomeIcon icon="play" size="2x"></FontAwesomeIcon>
 		</button>
 		<div id="staff"></div>
-	<div id="highlighted-note" v-if="highlightedNote" v-bind:style="highlightedNote"></div>
+	<div id="highlighted-note" v-show="highlightedNote" v-bind:style="highlightedNote"></div>
 	</div>
   </section>
 </template>

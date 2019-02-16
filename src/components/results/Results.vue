@@ -1,5 +1,5 @@
 <template>
-  <section v-if="pianoKeysPressed">
+  <section v-show="pianoKeysPressed">
     <section v-if="noResultsFound">
       <p>{{ this.$store.state.activeTab.noResultsText() }}</p>
     </section>
