@@ -1,5 +1,31 @@
 @import "@/css/_colors.scss";
 
+@font-face {
+	font-family: 'Raleway';
+	font-style: normal;
+	font-weight: 900;
+	src: local('Raleway Black'), local('Raleway-Black'), url('~@/assets/fonts/Raleway Bold.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Open Sans Regular'), local('OpenSans-Regular'), local('Open Sans'), url('~@/assets/fonts/Open Sans.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Roboto'), local('Roboto-Regular'), url('~@/assets/fonts/Roboto.woff2') format('woff2');
+}
+
+%logo-font {
+    font-family: 'Raleway', sans-serif;
+	color: $title-color;
+}
+
 %title-font {
 	font-family: 'Open Sans', sans-serif;
 	color: $title-color;

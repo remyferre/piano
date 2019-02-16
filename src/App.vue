@@ -98,10 +98,9 @@ button.reset::-moz-focus-inner {
     min-height: 40px;
     height    : 40px;
     h1 {
-        @extend %title-font;
+        @extend %logo-font;
         text-transform: uppercase;
         margin: 0 1rem;
-        font-family: Raleway, sans-serif;
         letter-spacing: .15em;
         $shadow-color: mix($title-color, $header-left-color, 25%);
         text-shadow: -1px 2px 1px $shadow-color, -2px 4px 1px $shadow-color,

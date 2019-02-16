@@ -21,6 +21,7 @@ import { faPlay } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { Chord } from '@/key_finder/chords.js';
 import { mainFont } from '@/css/font.js';
+import _tone_0000_SBLive_sf2 from './0000_SBLive_sf2.js';
 
 library.add(faPlay);
 
@@ -33,7 +34,7 @@ class PianoPlayer {
 		this.context = new AudioContext();
 		this.player = new WebAudioFontPlayer();
 		this.player.loader.decodeAfterLoading(this.context, '0000_SBLive_sf2');
-		this.preset = window._tone_0000_SBLive_sf2;
+		this.preset = _tone_0000_SBLive_sf2;
 	}
 
 	pitch(note, octave) {
