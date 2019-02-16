@@ -142,9 +142,9 @@ export default {
 				const bottom = Math.max(barLineTop + barLineHeight + noteHeight, noteBottom);
 
 				this.highlightedNote = {
-					left: `${left}px`,
+					left: `${window.scrollX + left}px`,
 					width: `${width}px`,
-					top: `${top}px`,
+					top: `${window.scrollY + top}px`,
 					height: `${bottom - top}px`,
 				};
 			}, when);
