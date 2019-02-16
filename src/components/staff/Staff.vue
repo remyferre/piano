@@ -133,7 +133,10 @@ export default {
 				const { top: barLineTop, height: barLineHeight } = barLine.getBoundingClientRect();
 
 				const note = document.querySelectorAll(".vf-note")[i];
-				const { left, width, height: noteHeight, top: noteTop, bottom: noteBottom } = note.getBoundingClientRect();
+				const { left, width, top: noteTop, bottom: noteBottom } = note.getBoundingClientRect();
+
+				// Current note could be a chord, so we use the first note to find the height
+				const noteHeight = document.querySelectorAll(".vf-note")[0].getBoundingClientRect().height;
 
 				const top = Math.min(barLineTop - noteHeight, noteTop);
 				const bottom = Math.max(barLineTop + barLineHeight + noteHeight, noteBottom);
