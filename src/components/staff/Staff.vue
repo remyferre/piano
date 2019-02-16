@@ -129,9 +129,6 @@ export default {
 		},
 		highlightNote(i, when) {
 			const timeoutId = setTimeout(() => {
-				const svg = document.querySelector("#staff svg");
-				const svgTop = svg.getBoundingClientRect().top;
-
 				const barLine = document.querySelector("#staff rect");
 				const { top: barLineTop, height: barLineHeight } = barLine.getBoundingClientRect();
 
