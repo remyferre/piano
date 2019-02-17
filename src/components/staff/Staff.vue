@@ -139,8 +139,8 @@ class VexflowStaff {
                 },
                 duration: 'w'
             }).setLine(0)
-                .setStave(staff)
-                .setJustification(VF.TextNote.Justification.LEFT);
+              .setStave(staff)
+              .setJustification(VF.TextNote.Justification.LEFT);
         });
         if (isChord) {
             text.push(new VF.TextNote({
@@ -152,8 +152,8 @@ class VexflowStaff {
                 },
                 duration: 'w'
             }).setLine(0)
-					  .setStave(staff)
-					  .setJustification(VF.TextNote.Justification.LEFT));
+              .setStave(staff)
+              .setJustification(VF.TextNote.Justification.LEFT));
         }
 
         const noteVoice = new VF.Voice({num_beats: notes.length * 4,  beat_value: 4});

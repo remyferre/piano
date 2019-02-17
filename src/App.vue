@@ -86,6 +86,9 @@ button.reset {
 	padding: 0;
 	cursor: pointer;
 }
+button:focus {
+	outline: 0;
+}
 button.reset::-moz-focus-inner {
 	border: 0;
 }
