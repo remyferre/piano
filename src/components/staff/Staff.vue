@@ -350,6 +350,12 @@ $margin: 20px;
 		justify-content: center;
 	}
 }
+
+@media only screen and (max-width : 625px) {
+	.play-button {
+		display: none;
+	}
+}
 </style>
 
 <style lang="scss">	// scoped doesn't work because <svg> is added dynamically

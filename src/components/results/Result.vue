@@ -26,7 +26,7 @@ export default {
 @import "@/css/_colors.scss";
 
 .key {
-	padding: 0.8rem !important;
+	padding: 0.5rem 0.8rem !important;
 	background-color: white;
 	border-radius: 50px;
 	margin-right: 1rem;

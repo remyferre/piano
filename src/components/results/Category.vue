@@ -1,6 +1,6 @@
 <template>
   <button class="reset" @click="filterKeys(category)">
-    <h4>
+    <h4 class="category-name">
       {{ category.name }} ({{ count }})
       <FontAwesomeIcon :icon="icon"></FontAwesomeIcon>
     </h4>
@@ -41,5 +41,9 @@ export default {
 </script>
 
 <style scoped lang="scss">
+
+.category-name {
+	margin: 0.8rem 0;
+}
 
 </style>

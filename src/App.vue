@@ -105,7 +105,7 @@ button.reset::-moz-focus-inner {
         text-transform: uppercase;
         margin: 0 1rem;
         letter-spacing: .15em;
-        $shadow-color: mix($title-color, $header-left-color, 25%);
+        $shadow-color: rgba(0, 0, 0, 0.075);
         text-shadow: -1px 2px 1px $shadow-color, -2px 4px 1px $shadow-color,
                      -3px 6px 1px $shadow-color, -4px 8px 1px $shadow-color;
     }
