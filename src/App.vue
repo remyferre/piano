@@ -47,6 +47,7 @@ export default {
 
 @import "@/css/_colors.scss";
 @import "@/css/_fonts.scss";
+@import "@/css/_globals.scss";
 
 /* Global */
 html {
@@ -110,31 +111,59 @@ button.reset::-moz-focus-inner {
                      -3px 6px 1px $shadow-color, -4px 8px 1px $shadow-color;
     }
 	.tabs {
-         display: flex;
-         margin-left: auto;
-         margin-right: 50px;
+        display: flex;
+        margin-left: auto;
+        margin-right: 50px;
 	}
 }
 
 /* Layout */
 .result-container {
-    max-width: 50vw;
+    width: 50vw;
 	margin: auto;
-	padding-bottom: 1rem;
-    margin-bottom: 200px;
+	padding-bottom: $key-margin;
+	padding-top   : $key-margin;
+    margin-bottom: $piano-height;
 }
+
+@media only screen and (max-width: $piano-width * 2) {
+	.result-container {
+		width: $piano-width;
+	}
+}
+
+$result-container-breakpoint: calc(#{$piano-width} + 2 * #{$key-margin});
+
+@media only screen and (min-width: $result-container-breakpoint) {
+	.key {
+		flex: 0 0 auto;
+	}
+}
+
+@media only screen and (max-width: $result-container-breakpoint) {
+	.result-container {
+		width: 100vw;
+		padding-left : $key-margin;
+		padding-right: $key-margin;
+	}
+	.key {
+		flex-grow: 1;
+	}
+	.keys::after {
+		content: " ";
+		flex-grow: 10;
+	}
+}
+
 .piano-container {
 	position: fixed;
 	bottom: 0;
-	left  : 0;
-	width: 100vw;
-	display: flex;
-	justify-content: center;
+	left     : 50vw;
+	transform: translate(-50%);
 }
 .usage-and-staff-container {
 	display: flex;
 	width: 100vw;
-	height: 200px;
 	align-items: center;
 	justify-content: center;
 	background-color: white;
@@ -142,11 +171,5 @@ button.reset::-moz-focus-inner {
 .staff-container {
 	display: flex;
 	justify-content: center;
-}
-
-@media only screen and (min-width : 532px) and (max-width : 900px) {
-}
-
-@media only screen and (min-width : 901px) and (max-width : 9999px) {
 }
 </style>

@@ -25,11 +25,3 @@ export const MINOR_MAJOR_SEVENTH     = new Chord("100100010001", note => `septi�
 export const MINOR_SEVENTH           = new Chord("100100010010", note => `septième mineure de ${note}`                    , "minor-seventh"          , {noteAlgorithm: subScaleNotes(MINOR_SCALE   , [1, 3, 5, 7])                   , shortName: note => `${note} min<sup>7</sup>`});
 export const HALF_DIMINISHED_SEVENTH = new Chord("100100100010", note => `septième mineure et quinte diminuée de ${note}` , "half-diminished-seventh", {noteAlgorithm: subScaleNotes(LOCRIAN       , [1, 3, 5, 7])                   , shortName: note => `${note}<sup>ø7</sup>`});
 export const DIMINISHED_SEVENTH      = new Chord("100100100100", note => `septième diminuée de ${note}`                   , "diminished-seventh"     , {noteAlgorithm: alteredNotes(HALF_DIMINISHED_SEVENTH.noteAlgorithm, [[4, -1]]), shortName: note => `${note}<sup>o7</sup>`});
-
-export const CHORD_CATEGORIES = {
-	"chord": [MAJOR_CHORD, MINOR_CHORD],
-	"otherTriad": [DIMINISHED_CHORD, AUGMENTED_CHORD],
-	"suspended": [SUS4, SUS2],
-	"seventh": [DOMINANT_SEVENTH],
-	"otherSeventh": [AUGMENTED_MAJOR_SEVENTH, MAJOR_SEVENTH, MINOR_MAJOR_SEVENTH, MINOR_SEVENTH, HALF_DIMINISHED_SEVENTH, DIMINISHED_SEVENTH]
-};

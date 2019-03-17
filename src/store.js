@@ -38,12 +38,19 @@ class Tab {
 class ScaleTab extends Tab {
 	constructor() {
 		super({
-			main: {
-				slug: "main",
-				name: "Majeures et mineures",
+			major: {
+				slug: "major",
+				name: "Gammes majeures",
 				isShown: true,
 				results: [],
-				items: [MAJOR_SCALE, MINOR_SCALE]
+				items: [MAJOR_SCALE]
+			},
+			minor: {
+				slug: "minor",
+				name: "Gammes mineures",
+				isShown: true,
+				results: [],
+				items: [MINOR_SCALE]
 			},
 			otherMinor: {
 				slug: "otherMinor",
@@ -89,12 +96,19 @@ class ScaleTab extends Tab {
 class ChordTab extends Tab {
 	constructor() {
 		super({
-			chord: {
-				slug: "chord",
-				name: "Majeurs et mineurs",
+			major: {
+				slug: "major",
+				name: "Accords majeurs",
 				isShown: true,
 				results: [],
-				items: [MAJOR_CHORD, MINOR_CHORD]
+				items: [MAJOR_CHORD]
+			},
+			minor: {
+				slug: "minor",
+				name: "Accords mineurs",
+				isShown: true,
+				results: [],
+				items: [MINOR_CHORD]
 			},
 			otherTriad: {
 				slug: "otherTriad",

@@ -9,7 +9,7 @@
         <div v-if="category.results.length > 0" class="keys">
           <Result v-for="keyResult in category.results" :keyResult="keyResult" :key="keyResult.slug()"></Result>
         </div>
-        <div v-else>Aucun résultat</div>
+        <div v-else class="no-results">Aucun résultat</div>
       </template>
     </section>
   </section>
@@ -40,12 +40,15 @@ export default {
 </script>
 
 <style scoped lang="scss">
+@import "@/css/_globals.scss";
+
 .keys {
     display: flex;
-    flex-wrap: no-wrap;
-    overflow-x: auto;
+    flex-wrap: wrap;
 }
-.key {
-    flex: 0 0 auto;
+.no-results {
+	padding-top: $key-padding-y;
+	padding-bottom: $key-padding-y;
+	margin-bottom: $key-margin;
 }
 </style>

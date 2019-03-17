@@ -15,5 +15,6 @@ export default {
 .usage {
 	font-size: 1.5rem;
     text-align: center;
+    margin: 1.5rem 1rem;
 }
 </style>

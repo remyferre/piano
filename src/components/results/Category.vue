@@ -41,9 +41,13 @@ export default {
 </script>
 
 <style scoped lang="scss">
+@import "@/css/_globals.scss";
 
 .category-name {
-	margin: 0.8rem 0;
+	margin: 0;
+	margin-bottom: $key-margin;
+	word-wrap: break-word;
+	text-align: left;
 }
 
 </style>

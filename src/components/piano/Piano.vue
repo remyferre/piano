@@ -43,12 +43,12 @@ export default {
 
 <style scoped lang="scss">
 @import "@/css/_colors.scss";
+@import "@/css/_globals.scss";
 
 .piano {
-	height: 200px;
+	height: $piano-height;
 	max-height: 40vh;
-	max-width: 500px;
-	width: 100%;
+	width: $piano-width;
 	display: inline-flex;
 	flex-direction: row;
 	outline: 1px solid $black;
@@ -56,6 +56,12 @@ export default {
 	color: $black;
 	user-select: none;
 	-moz-user-select: none;
+}
+
+@media only screen and (max-width : $piano-width) {
+	.piano {
+		width: 100vw;
+	}
 }
 
 .white-and-black-keys {

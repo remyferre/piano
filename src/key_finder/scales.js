@@ -46,11 +46,3 @@ export const BLUES_SCALE = new Scale("100101110010", note => `Blues de ${note}`,
 		return notes;
 	}
 });
-
-export const SCALE_CATEGORIES = {
-	"main"      : [MAJOR_SCALE, MINOR_SCALE],
-	"otherMinor": [HARMONIC_MINOR, MELODIC_MINOR,],
-	"mode"      : [DORIAN, PHRYGIAN, LYDIAN, MIXOLYDIAN, LOCRIAN],
-	"pentatonic": [PENTATONIC_MAJOR, PENTATONIC_MINOR],
-	"blues": [BLUES_SCALE]
-};

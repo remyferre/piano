@@ -363,4 +363,20 @@ $margin: 20px;
 	width: 100%;
 	height: 100%;
 }
+
+$staff-padding: 1rem;
+$breakpoint: calc(525px + 2 * #{$staff-padding});
+
+@media only screen and (max-width: $breakpoint) {
+	#staff svg {
+	    padding-left : $staff-padding;
+	    padding-right: $staff-padding;
+	}
+}
+
+@media only screen and (min-width: $breakpoint) {
+	.usage-and-staff-container {
+	    height: 200px;
+	}
+}
 </style>

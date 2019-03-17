@@ -24,12 +24,14 @@ export default {
 
 <style scoped lang="scss">
 @import "@/css/_colors.scss";
+@import "@/css/_globals.scss";
 
 .key {
-	padding: 0.5rem 0.8rem !important;
+	padding: $key-padding-y $key-padding-x !important;
 	background-color: white;
 	border-radius: 50px;
-	margin-right: 1rem;
+	margin-right: $key-margin;
+	margin-bottom: $key-margin;
 	&:not(.selected):hover {
 		background-color: $black-hover;
 	}
