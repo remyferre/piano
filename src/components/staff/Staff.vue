@@ -38,6 +38,8 @@ class PianoPlayer {
     }
 
     pitch(note, octave) {
+		if (note.naturalNote.index == 11 && note.index == 0)
+			++octave;
         return 12 * octave + note.index;
     }
 
