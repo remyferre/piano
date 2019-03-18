@@ -46,6 +46,7 @@ export default {
 .category-name {
 	margin: 0;
 	margin-bottom: $key-margin;
+	margin-top   : $key-margin;
 	word-wrap: break-word;
 	text-align: left;
 }

@@ -30,8 +30,6 @@ export default {
 	padding: $key-padding-y $key-padding-x !important;
 	background-color: white;
 	border-radius: 50px;
-	margin-right: $key-margin;
-	margin-bottom: $key-margin;
 	&:not(.selected):hover {
 		background-color: $black-hover;
 	}
@@ -39,5 +37,8 @@ export default {
 		color: $background-color;
 		background-color: $black;
 	}
+}
+.keys-pentatonic .key, .keys-otherMinor .key {
+	font-size: 14px;
 }
 </style>

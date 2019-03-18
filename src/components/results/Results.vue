@@ -3,7 +3,7 @@
     <section v-if="noResultsFound">
       <p>{{ this.$store.state.activeTab.noResultsText() }}</p>
     </section>
-    <section v-else v-for="category in results" :key="category.slug">
+    <section v-else v-for="category in results" :key="category.slug" :class="[`keys-${category.slug}`]">
       <Category :category="category"></Category>
       <template v-if="category.isShown">
         <div v-if="category.results.length > 0" class="keys">
@@ -43,12 +43,21 @@ export default {
 @import "@/css/_globals.scss";
 
 .keys {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(115px, 1fr));
+	grid-gap: $key-margin;
+}
+.keys-blues .keys {
+	grid-template-columns: repeat(auto-fill, minmax(125px, 1fr));
+}
+.keys-mode .keys, .keys-otherTriad .keys {
+	grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+}
+.keys-pentatonic .keys, .keys-otherMinor .keys {
+	grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
 }
 .no-results {
-	padding-top: $key-padding-y;
+	padding-top   : $key-padding-y;
 	padding-bottom: $key-padding-y;
-	margin-bottom: $key-margin;
 }
 </style>

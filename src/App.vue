@@ -122,7 +122,6 @@ button.reset::-moz-focus-inner {
     width: 50vw;
 	margin: auto;
 	padding-bottom: $key-margin;
-	padding-top   : $key-margin;
     margin-bottom: $piano-height;
 }
 
@@ -134,24 +133,11 @@ button.reset::-moz-focus-inner {
 
 $result-container-breakpoint: calc(#{$piano-width} + 2 * #{$key-margin});
 
-@media only screen and (min-width: $result-container-breakpoint) {
-	.key {
-		flex: 0 0 auto;
-	}
-}
-
 @media only screen and (max-width: $result-container-breakpoint) {
 	.result-container {
 		width: 100vw;
 		padding-left : $key-margin;
 		padding-right: $key-margin;
-	}
-	.key {
-		flex-grow: 1;
-	}
-	.keys::after {
-		content: " ";
-		flex-grow: 10;
 	}
 }
 
