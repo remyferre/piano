@@ -99,8 +99,6 @@ button.reset::-moz-focus-inner {
 .site-header {
     display: flex;
 	background: linear-gradient(135deg, $header-left-color 0%, $header-right-color 100%);
-    min-height: 40px;
-    height    : 40px;
     h1 {
         @extend %logo-font;
         text-transform: uppercase;
@@ -122,7 +120,7 @@ button.reset::-moz-focus-inner {
     width: 50vw;
 	margin: auto;
 	padding-bottom: $key-margin;
-    margin-bottom: $piano-height;
+    margin-bottom: $piano-max-height;
 }
 
 @media only screen and (max-width: $piano-width * 2) {

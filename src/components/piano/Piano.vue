@@ -46,8 +46,9 @@ export default {
 @import "@/css/_globals.scss";
 
 .piano {
-	height: $piano-height;
-	max-height: 40vh;
+	max-height: $piano-max-height;
+	height: 20vh;
+	min-height: 125px;
 	width: $piano-width;
 	display: inline-flex;
 	flex-direction: row;
