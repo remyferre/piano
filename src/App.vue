@@ -1,12 +1,6 @@
 <template>
   <div>
-    <header class="site-header">
-      <h1>Piano'matic</h1>
-      <div class="tabs">
-        <Tab :tab="this.$store.state.scales"></Tab>
-        <Tab :tab="this.$store.state.chords"></Tab>
-      </div>
-    </header>
+    <Header></Header>
     <main id="app">
       <div class="usage-and-staff-container">
         <Usage></Usage>
@@ -25,7 +19,7 @@
 </template>
 
 <script>
-import Tab from './components/results/Tab.vue';
+import Header from './components/header/Header.vue';
 import Usage  from './components/Usage.vue';
 import Piano from './components/piano/Piano.vue';
 import Staff from './components/staff/Staff.vue';
@@ -34,7 +28,7 @@ import Results from './components/results/Results.vue';
 export default {
 	name: 'app',
 	components: {
-		Tab,
+		Header,
 		Usage,
 		Piano,
 		Staff,
@@ -92,27 +86,6 @@ button:focus {
 }
 button.reset::-moz-focus-inner {
 	border: 0;
-}
-
-/* Header */
-
-.site-header {
-    display: flex;
-	background: linear-gradient(135deg, $header-left-color 0%, $header-right-color 100%);
-    h1 {
-        @extend %logo-font;
-        text-transform: uppercase;
-        margin: 0 1rem;
-        letter-spacing: .15em;
-        $shadow-color: rgba(0, 0, 0, 0.075);
-        text-shadow: -1px 2px 1px $shadow-color, -2px 4px 1px $shadow-color,
-                     -3px 6px 1px $shadow-color, -4px 8px 1px $shadow-color;
-    }
-	.tabs {
-        display: flex;
-        margin-left: auto;
-        margin-right: 50px;
-	}
 }
 
 /* Layout */
