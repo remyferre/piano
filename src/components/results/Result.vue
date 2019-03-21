@@ -30,6 +30,7 @@ export default {
 	padding: $key-padding-y $key-padding-x !important;
 	background-color: white;
 	border-radius: 50px;
+	height: $key-height;
 	&:not(.selected):hover {
 		background-color: $black-hover;
 	}

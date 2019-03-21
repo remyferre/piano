@@ -59,5 +59,6 @@ export default {
 .no-results {
 	padding-top   : $key-padding-y;
 	padding-bottom: $key-padding-y;
+	height: $key-height;
 }
 </style>
