@@ -1,6 +1,6 @@
 <template>
   <section v-show="pianoKeysPressed">
-    <section v-if="noResultsFound">
+    <section v-if="noResultsFound" class="no-results">
       <p>{{ this.$store.state.activeTab.noResultsText() }}</p>
     </section>
     <section v-else v-for="category in results" :key="category.slug" :class="[`keys-${category.slug}`]">
@@ -9,7 +9,7 @@
         <div v-if="category.results.length > 0" class="keys">
           <Result v-for="keyResult in category.results" :keyResult="keyResult" :key="keyResult.slug()"></Result>
         </div>
-        <div v-else class="no-results">Aucun résultat</div>
+        <div v-else class="no-category-results">Aucun résultat</div>
       </template>
     </section>
   </section>
@@ -42,6 +42,16 @@ export default {
 <style scoped lang="scss">
 @import "@/css/_globals.scss";
 
+.no-results {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 25vh;
+	p {
+		font-size: 1.5rem;
+		text-align: center;
+	}
+}
 .keys {
     display: grid;
 	grid-template-columns: repeat(auto-fill, minmax(115px, 1fr));
@@ -56,7 +66,7 @@ export default {
 .keys-pentatonic .keys, .keys-otherMinor .keys {
 	grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
 }
-.no-results {
+.no-category-results {
 	padding-top   : $key-padding-y;
 	padding-bottom: $key-padding-y;
 	height: $key-height;
