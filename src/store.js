@@ -131,13 +131,20 @@ class ChordTab extends Tab {
 				results: [],
 				items: [DOMINANT_SEVENTH]
 			},
+			diminishedSeventh: {
+				slug: "diminishedSeventh",
+				name: "Septièmes diminuées",
+				isShown: false,
+				results: [],
+				items: [DIMINISHED_SEVENTH]
+			},
 			otherSeventh: {
 				slug: "otherSeventh",
 				name: "Septièmes d'espèces",
 				isShown: false,
 				results: [],
 				items: [MAJOR_SEVENTH, AUGMENTED_MAJOR_SEVENTH, MINOR_MAJOR_SEVENTH,
-						MINOR_SEVENTH, HALF_DIMINISHED_SEVENTH, DIMINISHED_SEVENTH]
+						MINOR_SEVENTH, HALF_DIMINISHED_SEVENTH]
 			}
 		});
 	}
