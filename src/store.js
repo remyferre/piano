@@ -86,7 +86,7 @@ class ScaleTab extends Tab {
 		return "Gammes";
 	}
 	usage() {
-		return "Appuyez sur les touches du piano pour afficher les gammes correspondantes.";
+		return "Appuyez sur les touches du piano pour afficher les gammes contenant les notes sélectionnées.";
 	}
 	noResultsText() {
 		return "Aucune gamme n'a été trouvée";
@@ -152,7 +152,7 @@ class ChordTab extends Tab {
 		return "Accords";
 	}
 	usage() {
-		return "Appuyez sur les touches du piano pour afficher les accords correspondants.";
+		return "Appuyez sur les touches du piano pour afficher les accords contenant les notes sélectionnées.";
 	}
 	noResultsText() {
 		return "Aucun accord n'a été trouvé";
