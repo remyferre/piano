@@ -80,6 +80,9 @@ export default {
             this.staff.playNotes(notes, duration, this.isChord);
         },
 		redrawStaff() {
+			if (!this.key)
+				return;
+
             this.staff.draw(
                 this.notesWithOctave(this.key.notes),
                 this.key.scale instanceof Chord,
