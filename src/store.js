@@ -16,7 +16,9 @@ import {
 	MINOR_MAJOR_SEVENTH, MINOR_SEVENTH, HALF_DIMINISHED_SEVENTH,
 	DIMINISHED_SEVENTH
 } from './key_finder/chords.js';
-import {findKeys} from './key_finder/main.js';
+import { findKeys } from './key_finder/main.js';
+import { Chord } from './key_finder/chords.js';
+import { Scale } from './key_finder/scales.js';
 
 Vue.use(Vuex);
 
@@ -91,6 +93,9 @@ class ScaleTab extends Tab {
 	noResultsText() {
 		return "Aucune gamme n'a été trouvée";
 	}
+	relatedType() {
+		return Scale;
+	}
 }
 
 class ChordTab extends Tab {
@@ -157,6 +162,9 @@ class ChordTab extends Tab {
 	noResultsText() {
 		return "Aucun accord n'a été trouvé";
 	}
+	relatedType() {
+		return Chord;
+	}
 }
 
 function firstFilteredKey(state) {
@@ -217,8 +225,11 @@ export default new Vuex.Store({
 		},
 		changeTab(state, tab) {
 			state.activeTab = tab;
-			if (pianoKeysPressed(state))
+			if (pianoKeysPressed(state)) {
 				updateSelectedKey(state);
+				if (!(state.selectedKey.scale instanceof tab.relatedType()))
+					state.selectedKey = null;
+			}
 			else
 				state.selectedKey = null;
 		},
