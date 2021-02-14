@@ -4,7 +4,6 @@ import {
 	DOMINANT_SEVENTH, MAJOR_SEVENTH, AUGMENTED_MAJOR_SEVENTH, MINOR_SEVENTH,
 	MINOR_MAJOR_SEVENTH, HALF_DIMINISHED_SEVENTH, DIMINISHED_SEVENTH
 } from '@/key_finder/chords.js';
-import { findKeys } from '@/key_finder/main.js';
 
 
 test('Major', () => {

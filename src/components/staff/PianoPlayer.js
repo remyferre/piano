@@ -14,8 +14,12 @@ export default class PianoPlayer {
     }
 
     pitch(note, octave) {
+        // Octave values for B♯ and C♭ are wrong and need to be fixed here
+        // This is because notesWithOctave() return value suited for drawing the notes on the staff
 		if (note.naturalNote.index == 11 && note.index == 0)
 			++octave;
+		if (note.naturalNote.index == 0 && note.index == 11)
+			--octave;
         return 12 * octave + note.index;
     }
 
